@@ -19,18 +19,18 @@ import subprocess
 new_manifests={ "NEWNAME1" : "SERIALNUMBER1", "NEWNAME2" : "SERIALNUMBER2", "NEWNAME3" : "SERIALNUMBER3" }
 
 # Code for serial number based on http://apple.stackexchange.com/a/40244
-this_mac=os.popen('system_profiler SPHardwareDataType | awk \'/Serial/ {print $4}\'').read().strip()
+this_mac=os.popen('/usr/sbin/system_profiler SPHardwareDataType | /usr/bin/awk \'/Serial/ {print $4}\'').read().strip()
 
 if this_mac in new_manifests:
 
    # Create the command to write the new manifest for the client
-   #cmdOne='sudo /usr/bin/defaults write /private/var/root/Library/Preferences/ManagedInstalls ClientIdentifier "' + new_manifests[this_mac] + '"'
-   #cmdTwo='sudo /usr/bin/defaults delete /Library/Preferences/ManagedInstalls ClientIdentifier'
+   #cmdOne='/usr/bin/defaults write /private/var/root/Library/Preferences/ManagedInstalls ClientIdentifier "' + new_manifests[this_mac] + '"'
+   #cmdTwo='/usr/bin/defaults delete /Library/Preferences/ManagedInstalls ClientIdentifier'
    
    #print cmdOne
    #print cmdTwo
 
-   cmd='sudo /usr/bin/defaults write /Library/Preferences/ManagedInstalls ClientIdentifier "' + new_manifests[this_mac] + '"'
+   cmd='/usr/bin/defaults write /Library/Preferences/ManagedInstalls ClientIdentifier "' + new_manifests[this_mac] + '"'
 
    #print cmd
 
